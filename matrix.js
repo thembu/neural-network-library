@@ -36,7 +36,7 @@ add = function(n) {
 
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols ; j++) {
-                this.data[i][j] += n.matrix[i][j];
+                this.data[i][j] += n.data[i][j];
             }
         }
 
@@ -48,6 +48,33 @@ add = function(n) {
         }
     }
 }
+}
+
+static multiply(a, b) {
+    if(a.cols !== b.rows) {
+        console.log("Cols of A must match rows of B");
+        return undefined;
+    }
+
+   let result = new Matrix(a.rows , b.cols); 
+
+   
+   for(let i = 0; i < result.rows ; i++) {
+    for (let j = 0; j < result.cols; j++) {
+          // dot roduct of values in col
+          let sum = 0
+         for(let k = 0; k < a.cols; k++) {
+            sum += a.data[i][k] * b.data[k][j];
+         }
+
+          result.data[i][j] = sum;
+    }
+    return result;
+
+   }
+   
+
+
 }
 
 multiply = function(n) {
@@ -69,10 +96,10 @@ multiply = function(n) {
               // dot roduct of values in col
               let sum = 0
              for(let k = 0; k < a.cols; k++) {
-                sum += a.matrix[i][k] * b.matrix[k][j];
+                sum += a.data[i][k] * b.data[k][j];
              }
 
-              result.matrix[i][j] = sum;
+              result.data[i][j] = sum;
         }
         return result;
 
@@ -96,11 +123,28 @@ transpose = function() {
 
     for(let i = 0; i < this.rows; i++) {
         for(let j = 0; j < this.cols; j++) {
-            result.matrix[j][i] = this.data[i][j];
+            result.data[j][i] = this.data[i][j];
         }
     }
 
     return result;
 
+
 }   
+
+
+map(func) {
+    for (let i = 0; i < this.rows; i++) {
+        for (let j = 0; j < this.cols ; j++) {
+            let val = this.data[i][j];
+            this.data[i][j] = func(val);
+        }
+    }
+
+}
+
+write() {
+    console.table(this.data);
+}
+
 }
