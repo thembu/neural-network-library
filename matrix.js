@@ -3,14 +3,14 @@ class Matrix {
 constructor(rows , cols) {
     this.rows = rows;
     this.cols = cols;
-    this.matrix = [];
+    this.data = [];
 
     for (let i = 0; i < this.rows; i++) {
 
-    this.matrix[i] = [];
+    this.data[i] = [];
 
     for (let j = 0; j < this.cols; j++) {
-      this.matrix[i][j] = 0;
+      this.data[i][j] = 0;
     }
   }
 }
@@ -22,7 +22,7 @@ randomize = function() {
     for (let i = 0; i < this.rows; i++) {
 
     for (let j = 0; j < this.cols; j++) {
-      this.matrix[i][j] = Math.floor(Math.random() * 10);
+      this.data[i][j] = Math.floor(Math.random() * 10);
     }
  }
 
@@ -36,7 +36,7 @@ add = function(n) {
 
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols ; j++) {
-                this.matrix[i][j] += n.matrix[i][j];
+                this.data[i][j] += n.matrix[i][j];
             }
         }
 
@@ -44,7 +44,7 @@ add = function(n) {
 
     for (let i = 0; i < this.rows; i++) {
         for (let j = 0; j < this.cols ; j++) {
-            this.matrix[i][j] += n;
+            this.data[i][j] += n;
         }
     }
 }
@@ -58,8 +58,8 @@ multiply = function(n) {
             return undefined;
         }
 
-       let a = this.matrix;
-       let b = n.matrix;
+       let a = this;
+       let b = n;
 
        let result = new Matrix(a.rows , b.cols); 
 
@@ -72,8 +72,10 @@ multiply = function(n) {
                 sum += a.matrix[i][k] * b.matrix[k][j];
              }
 
-              result[i][j] = sum;
+              result.matrix[i][j] = sum;
         }
+        return result;
+
        }
        
 
@@ -82,9 +84,23 @@ multiply = function(n) {
 
     for (let i = 0; i < this.rows; i++) {
         for (let j = 0; j < this.cols ; j++) {
-            this.matrix[i][j] *= n;
+            this.data[i][j] *= n;
         }
     }
  }
 }
+
+
+transpose = function() {
+    let result = new Matrix(this.cols , this.rows);
+
+    for(let i = 0; i < this.rows; i++) {
+        for(let j = 0; j < this.cols; j++) {
+            result.matrix[j][i] = this.data[i][j];
+        }
+    }
+
+    return result;
+
+}   
 }
