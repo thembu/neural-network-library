@@ -1,4 +1,6 @@
-function Matrix(rows , cols) {
+class Matrix {
+
+constructor(rows , cols) {
     this.rows = rows;
     this.cols = cols;
     this.matrix = [];
@@ -10,11 +12,12 @@ function Matrix(rows , cols) {
     for (let j = 0; j < this.cols; j++) {
       this.matrix[i][j] = 0;
     }
- }
-
+  }
 }
 
-Matrix.prototype.randomize = function() {
+
+
+randomize = function() {
 
     for (let i = 0; i < this.rows; i++) {
 
@@ -27,7 +30,7 @@ Matrix.prototype.randomize = function() {
 
 }
 
-Matrix.prototype.add = function(n) {
+add = function(n) {
 
     if(n instanceof Matrix) {
 
@@ -47,11 +50,11 @@ Matrix.prototype.add = function(n) {
 }
 }
 
-
-Matrix.prototype.multiply = function(n) {
+multiply = function(n) {
     for (let i = 0; i < this.rows; i++) {
         for (let j = 0; j < this.cols ; j++) {
             this.matrix[i][j] *= n;
         }
     }
+ }
 }
