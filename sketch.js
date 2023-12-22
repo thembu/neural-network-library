@@ -1,16 +1,10 @@
 function setup() {
   // Add your setup code here
 
-  let a = new Matrix(2, 3);
-  let b = new Matrix(3, 2);
+  let nn = new NeuralNetwork(2, 2, 1);
+  let inputs = [1, 0];
 
-  a.randomize();
-  b.randomize();
-
-  console.table(a.matrix);
-  console.table(b.matrix);
-
-  let c = a.multiply(b);
-  console.table(c.matrix);
+  let outputs = nn.feedforward(inputs);
+  console.log(outputs);
 
 }
