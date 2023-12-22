@@ -80,6 +80,22 @@ add = function(n) {
 }
 }
 
+
+static subtract(a, b) {
+    let result = new Matrix(a.rows, a.cols);
+    for (let i = 0; i < result.rows; i++) {
+       for (let j = 0; j < result.cols ; j++) {
+           result.data[i][j] = a.data[i][j] - b.data[i][j];
+       }
+
+        
+    }
+
+    return result;
+
+}
+
+
 static multiply(a, b) {
     if(a.cols !== b.rows) {
         console.log("Cols of A must match rows of B");
@@ -148,12 +164,12 @@ multiply = function(n) {
 }
 
 
-transpose = function() {
-    let result = new Matrix(this.cols , this.rows);
+ static transpose (matrix) {
+    let result = new Matrix(matrix.cols , matrix.rows);
 
-    for(let i = 0; i < this.rows; i++) {
-        for(let j = 0; j < this.cols; j++) {
-            result.data[j][i] = this.data[i][j];
+    for(let i = 0; i < matrix.rows; i++) {
+        for(let j = 0; j < matrix.cols; j++) {
+            result.data[j][i] = matrix.data[i][j];
         }
     }
 

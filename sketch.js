@@ -1,10 +1,9 @@
 function setup() {
   // Add your setup code here
 
-  let nn = new NeuralNetwork(2, 2, 1);
-  let inputs = [1, 0];
+  let nn = new NeuralNetwork(2, 2, 2);
+  let inputs = [1, 2];
 
-  let outputs = nn.feedforward(inputs);
-  console.log(outputs);
+  nn.train(inputs, [1,10]);
 
 }

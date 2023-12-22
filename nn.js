@@ -51,7 +51,26 @@ class NeuralNetwork {
         return output.toArray();
     }
 
-    train(inputs , answer) {
+    train(inputs , targets) {
+    
+        let outputs = this.feedforward(inputs);
+  
+        // convert array to matrix object
+        targets = Matrix.fromArray(targets);
+
+        outputs = Matrix.fromArray(outputs);
+
+
+
+        let output_error = Matrix.subtract(targets, outputs);
+
+
+        let who_t = Matrix.transpose(this.weights_oh);
+ 
+        let hidden_error = Matrix.multiply(who_t, output_error);
+
+    
+        hidden_error.print();
         
     }
 
